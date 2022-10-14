@@ -6,14 +6,17 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.deepPurple,
       ),
-      home: const MyHomePage(title: 'PRAKTIKUM PERTEMUAN 2 - NOMOR 2'),
+      home: const MyHomePage(
+        title: 'PRAKTIKUM PERTEMUAN 2 - NOMOR 1',
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -21,6 +24,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
@@ -28,11 +32,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool isVisible = false;
+  double _counter = 12.0;
 
-  void _isVisible() {
+  void _incrementCounter() {
     setState(() {
-      isVisible = !isVisible;
+      _counter++;
     });
   }
 
@@ -46,17 +50,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            isVisible
-                ? const Text('Natanael Berkat Sianturi')
-                : const Text("NAT"),
+            Text(
+              'Ini adalah ukuran font:',
+              style: TextStyle(fontSize: _counter, color: Colors.amber),
+            ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _isVisible,
+        onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
